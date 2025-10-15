@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌾 Agriculture Crop Yield Prediction</h1>
+        <!-- The form now submits to the '/predict' API endpoint -->
+        <form id="prediction-form">
+            <div class="form-group">
+                <label for="Region">Region:</label>
+                <select name="Region" required>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="Soil_Type">Soil Type:</label>
+                <select name="Soil_Type" required>
+                    <option value="Clay">Clay</option>
+                    <option value="Sandy">Sandy</option>
+                    <option value="Loam">Loam</option>
+                    <option value="Silt">Silt</option>
+                    <option value="Peaty">Peaty</option>
+                    <option value="Chalky">Chalky</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Crop">Crop:</label>
+                <select name="Crop" required>
+                    <option value="Wheat">Wheat</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Maize">Maize</option>
+                    <option value="Barley">Barley</option>
+                    <option value="Soybean">Soybean</option>
+                    <option value="Cotton">Cotton</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Weather_Condition">Weather Condition:</label>
+                <select name="Weather_Condition" required>
+                    <option value="Sunny">Sunny</option>
+                    <option value="Rainy">Rainy</option>
+                    <option value="Cloudy">Cloudy</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="Rainfall_mm">Rainfall (mm):</label>
+                <input type="number" step="any" name="Rainfall_mm" required value="500">
+            </div>
+
+            <div class="form-group">
+                <label for="Temperature_Celsius">Temperature (°C):</label>
+                <input type="number" step="any" name="Temperature_Celsius" required value="25">
+            </div>
+
+            <div class="form-group">
+                <label for="Days_to_Harvest">Days to Harvest:</label>
+                <input type="number" name="Days_to_Harvest" required value="90">
+            </div>
+            
+            <div class="form-group">
+                 <label for="Fertilizer_Used">Fertilizer Used?</label>
+                <select name="Fertilizer_Used" required>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                 <label for="Irrigation_Used">Irrigation Used?</label>
+                <select name="Irrigation_Used" required>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                 <input type="submit" value="Predict Yield">
+            </div>
+        </form>
+
+        <!-- The prediction result will be displayed here -->
+        <div id="result-container">
+            {% if prediction_text %}
+                <div class="prediction">
+                    {{ prediction_text }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
